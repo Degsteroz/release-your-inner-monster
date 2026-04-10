@@ -1,18 +1,16 @@
 import { useEffect, useRef } from 'react'
+import { useTranslation } from 'react-i18next'
+
+import { useDisplaySizes } from '../../hooks/useDisplaySizes'
+
 import video from '../../assets/Monster Energy Zero Ultra Spec Commercial.mp4'
 
 import styles from './styles.module.sass'
-import { useTranslation } from 'react-i18next'
 
-/** Не отматывать последние X таймлайна (затемнение в конце) */
 const END_TRIM_RATIO = 0.12
-
-/**
- * Чуть плотнее обновляем кадр: при коротком треке (3× экран) на пиксель приходится больше времени ролика.
- */
 const SEEK_THRESHOLD_SEC = 0.028
 
-export default function TasteSection() {
+function TasteSectionDesktop() {
   const { t } = useTranslation()
   const videoRef = useRef<HTMLVideoElement | null>(null)
   const trackRef = useRef<HTMLElement | null>(null)
@@ -20,18 +18,18 @@ export default function TasteSection() {
   useEffect(() => {
     if (typeof window === 'undefined') return
 
-    const video = videoRef.current
+    const videoEl = videoRef.current
     const track = trackRef.current
-    if (!video || !track) return
+    if (!videoEl || !track) return
 
     let rafId = 0
     let pending = false
 
     const syncVideoToScroll = () => {
       pending = false
-      if (!video.duration || !Number.isFinite(video.duration)) return
+      if (!videoEl.duration || !Number.isFinite(videoEl.duration)) return
 
-      const usableDuration = video.duration * (1 - END_TRIM_RATIO)
+      const usableDuration = videoEl.duration * (1 - END_TRIM_RATIO)
       if (usableDuration <= 0.05) return
 
       const vh = window.innerHeight
@@ -43,8 +41,8 @@ export default function TasteSection() {
       const p = scrolled / scrollable
       const targetTime = Math.min(usableDuration - 0.001, p * usableDuration)
 
-      if (Math.abs(video.currentTime - targetTime) > SEEK_THRESHOLD_SEC) {
-        video.currentTime = targetTime
+      if (Math.abs(videoEl.currentTime - targetTime) > SEEK_THRESHOLD_SEC) {
+        videoEl.currentTime = targetTime
       }
     }
 
@@ -64,13 +62,13 @@ export default function TasteSection() {
 
     window.addEventListener('scroll', onScroll, { passive: true })
     window.addEventListener('resize', onResize, { passive: true })
-    video.addEventListener('loadedmetadata', onMeta)
+    videoEl.addEventListener('loadedmetadata', onMeta)
     onScroll()
 
     return () => {
       window.removeEventListener('scroll', onScroll)
       window.removeEventListener('resize', onResize)
-      video.removeEventListener('loadedmetadata', onMeta)
+      videoEl.removeEventListener('loadedmetadata', onMeta)
       window.cancelAnimationFrame(rafId)
     }
   }, [])
@@ -88,7 +86,7 @@ export default function TasteSection() {
           muted
           playsInline
           preload="auto"
-          aria-label="Видео: вкус продукта"
+          aria-label={t('taste.title')}
         />
       </div>
       <div className={styles.content}>
@@ -109,4 +107,49 @@ export default function TasteSection() {
       </div>
     </section>
   )
+}
+
+function TasteSectionMobile() {
+  const { t } = useTranslation()
+
+  return (
+    <section
+      className={styles.tasteSectionMobile}
+      aria-label={t('taste.title')}
+    >
+      <div className={styles.mobileVideoStickyWrap}>
+        <video
+          className={styles.mobileVideo}
+          src={video}
+          muted
+          playsInline
+          loop
+          autoPlay
+          preload="metadata"
+          aria-label={t('taste.title')}
+        />
+      </div>
+
+      <div className={styles.mobileCopy}>
+        <article className={styles.mobileBlock}>
+          <h2 className={styles.mobileHeading}>{t('taste.title')}</h2>
+          <p className={styles.mobileBody}>{t('taste.body')}</p>
+        </article>
+        <article className={styles.mobileBlock}>
+          <h2 className={styles.mobileHeading}>{t('position.title')}</h2>
+          <p className={styles.mobileBody}>{t('position.body')}</p>
+        </article>
+        <article className={styles.mobileBlock}>
+          <h2 className={styles.mobileHeading}>{t('buyers.title')}</h2>
+          <p className={styles.mobileBody}>{t('buyers.body')}</p>
+        </article>
+      </div>
+    </section>
+  )
+}
+
+export default function TasteSection() {
+  const { isMobile } = useDisplaySizes()
+  if (isMobile) return <TasteSectionMobile />
+  return <TasteSectionDesktop />
 }

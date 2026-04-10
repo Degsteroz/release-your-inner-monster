@@ -1,18 +1,121 @@
+@use "../../styles/mixins" as *
+
 .audioSwitcher
   display: flex
   flex-flow: column
+  align-items: center
   width: 50px
+  gap: 0.35rem
+
+  @include md
+    width: 4.75rem
+    min-width: 4.25rem
+    gap: 0.2rem
+
+.mobileRow
+  width: 100%
+  padding: 0 0.05rem
+
+.mobileRange
+  width: 100%
+  height: 1.35rem
+  margin: 0
+  cursor: pointer
+  accent-color: rgba(255, 255, 255, 0.9)
+  background: transparent
+
+  &::-webkit-slider-runnable-track
+    height: 4px
+    border-radius: 2px
+    background: rgba(255, 255, 255, 0.22)
+
+  &::-webkit-slider-thumb
+    appearance: none
+    width: 16px
+    height: 16px
+    margin-top: -6px
+    border-radius: 50%
+    background: #fff
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.45)
+
+  &::-moz-range-track
+    height: 4px
+    border-radius: 2px
+    background: rgba(255, 255, 255, 0.22)
+
+  &::-moz-range-thumb
+    width: 16px
+    height: 16px
+    border: none
+    border-radius: 50%
+    background: #fff
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.45)
+
+.muteCluster
+  display: flex
+  flex-direction: column
+  align-items: center
+  gap: 0.35rem
+  width: 100%
+
+.tapHint
+  margin: 0
+  max-width: 6.5rem
+  font-size: 0.58rem
+  line-height: 1.3
+  text-align: center
+  letter-spacing: 0.02em
+  color: rgba(255, 255, 255, 0.88)
+  font-family: 'Source Sans 3', system-ui, sans-serif
+
+  @include md
+    max-width: 7rem
+    font-size: 0.56rem
+
+.muteButtonPulse
+  animation: audioTapPulse 1.5s ease-in-out infinite
+
+@keyframes audioTapPulse
+  0%, 100%
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.45)
+  55%
+    box-shadow: 0 0 0 7px rgba(255, 255, 255, 0)
 
 .muteButton
   display: flex
   flex-flow: column
-  padding: 0.25rem
+  align-items: center
+  justify-content: center
+  min-width: 44px
+  min-height: 44px
+  padding: 0.35rem
   line-height: 0
+  border: none
+  background: transparent
+  border-radius: 10px
+  cursor: pointer
+  color: inherit
+
+  @include md
+    min-width: 32px
+    min-height: 32px
+    padding: 0.2rem
+
+  &:focus-visible
+    outline: 2px solid rgba(255, 255, 255, 0.5)
+    outline-offset: 2px
 
 .svg
-  width: 20px
-  height: 20px
+  width: 22px
+  height: 22px
   margin: 0 auto
+  display: block
+
+  @include md
+    width: 17px
+    height: 17px
+    filter: brightness(0) invert(1)
+    opacity: 0.95
 
 .gaugeWrap
   position: relative

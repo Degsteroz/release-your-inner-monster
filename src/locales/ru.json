@@ -37,6 +37,10 @@
     "ru": "Ru",
     "en": "En"
   },
+  "audio": {
+    "tapForSound": "Тапни по динамику, чтобы включить звук",
+    "volume": "Громкость"
+  },
   "footer": {
     "meta": {
       "copyright": "© {{year}}",
