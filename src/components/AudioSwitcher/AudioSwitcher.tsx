@@ -1,14 +1,12 @@
 import { useCallback, useEffect, useRef, useState, type ChangeEvent } from 'react'
 import { useTranslation } from 'react-i18next'
 
-import { useDisplaySizes } from '../../hooks/useDisplaySizes'
-
 import track from '../../assets/linkin-park_figure-09.mp3'
+import { useDisplaySizes } from '../../hooks/useDisplaySizes'
 import speaker from '../../assets/speaker.svg'
 import speakerOff from '../../assets/speaker-cross.svg'
 
 import { VolumeGauge } from './VolumeGauge.tsx'
-
 import styles from './styles.module.sass'
 
 const DEFAULT_VOLUME = 0.2
@@ -18,8 +16,7 @@ export default function AudioSwitcher() {
   const { isMobile } = useDisplaySizes()
   const [muted, setMuted] = useState(false)
   const [volume, setVolume] = useState(DEFAULT_VOLUME)
-  /** На телефонах автозапуск часто запрещён — показываем подсказку, пока не будет жеста */
-  const [needsTapForSound, setNeedsTapForSound] = useState(false)
+  const [needsUserGestureForSound, setNeedsUserGestureForSound] = useState(false)
   const audioRef = useRef<HTMLAudioElement | null>(null)
 
   useEffect(() => {
@@ -34,36 +31,28 @@ export default function AudioSwitcher() {
     const p = el.play()
     if (p !== undefined) {
       void p
-        .then(() => {
-          if (isMobile) setNeedsTapForSound(false)
-        })
-        .catch(() => {
-          if (isMobile) setNeedsTapForSound(true)
-        })
+        .then(() => setNeedsUserGestureForSound(false))
+        .catch(() => setNeedsUserGestureForSound(true))
     }
-  }, [isMobile])
+  }, [])
 
   useEffect(() => {
     const el = audioRef.current
     if (!el) return
     el.volume = DEFAULT_VOLUME
-    if (!isMobile) {
-      void el.play()
-      return
-    }
     void el
       .play()
-      .then(() => setNeedsTapForSound(false))
-      .catch(() => setNeedsTapForSound(true))
+      .then(() => setNeedsUserGestureForSound(false))
+      .catch(() => setNeedsUserGestureForSound(true))
   }, [isMobile])
 
   const handleMuteClick = () => {
     const el = audioRef.current
     if (!el) return
-    if (needsTapForSound && isMobile) {
+    if (needsUserGestureForSound) {
       void el
         .play()
-        .then(() => setNeedsTapForSound(false))
+        .then(() => setNeedsUserGestureForSound(false))
         .catch(() => {})
       return
     }
@@ -73,10 +62,11 @@ export default function AudioSwitcher() {
 
   const handleVolumeChange = useCallback(
     (v: number) => {
+      tryPlay()
       setVolume(v / 5)
       if (v > 0 && muted) setMuted(false)
     },
-    [muted],
+    [muted, tryPlay],
   )
 
   const handleMobileVolumeInput = useCallback(
@@ -92,7 +82,7 @@ export default function AudioSwitcher() {
   const silent = muted || volume === 0
 
   return (
-    <div className={styles.audioSwitcher}>
+    <div className={`${styles.audioSwitcher} ${needsUserGestureForSound ? styles.withHint : ''}`}>
       <audio
         ref={audioRef}
         src={track}
@@ -119,7 +109,7 @@ export default function AudioSwitcher() {
         />
       )}
       <div className={styles.muteCluster}>
-        {needsTapForSound && isMobile ? (
+        {needsUserGestureForSound ? (
           <p
             id="audio-tap-hint"
             className={styles.tapHint}
@@ -131,10 +121,10 @@ export default function AudioSwitcher() {
         ) : null}
         <button
           type="button"
-          className={`${styles.muteButton} ${needsTapForSound && isMobile ? styles.muteButtonPulse : ''}`}
+          className={`${styles.muteButton} ${needsUserGestureForSound ? styles.muteButtonPulse : ''}`}
           onClick={handleMuteClick}
           aria-pressed={silent}
-          aria-describedby={needsTapForSound && isMobile ? 'audio-tap-hint' : undefined}
+          aria-describedby={needsUserGestureForSound ? 'audio-tap-hint' : undefined}
         >
           <img
             src={silent ? speakerOff : speaker}
