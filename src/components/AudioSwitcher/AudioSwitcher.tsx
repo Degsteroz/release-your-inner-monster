@@ -22,7 +22,11 @@ export default function AudioSwitcher() {
   useEffect(() => {
     const el = audioRef.current
     if (!el) return
-    el.volume = muted ? 0 : volume
+    const effectivelySilent = muted || volume === 0
+    el.muted = effectivelySilent
+    if (!effectivelySilent) {
+      el.volume = Math.max(0, Math.min(1, volume))
+    }
   }, [muted, volume])
 
   const tryPlay = useCallback(() => {
@@ -34,6 +38,14 @@ export default function AudioSwitcher() {
         .then(() => setNeedsUserGestureForSound(false))
         .catch(() => setNeedsUserGestureForSound(true))
     }
+  }, [])
+
+  useEffect(() => {
+    const el = audioRef.current
+    if (!el) return
+    const clearHint = () => setNeedsUserGestureForSound(false)
+    el.addEventListener('playing', clearHint)
+    return () => el.removeEventListener('playing', clearHint)
   }, [])
 
   useEffect(() => {
@@ -56,7 +68,7 @@ export default function AudioSwitcher() {
         .catch(() => {})
       return
     }
-    tryPlay()
+    void el.play().catch(() => {})
     setMuted((m) => !m)
   }
 
@@ -73,7 +85,7 @@ export default function AudioSwitcher() {
     (e: ChangeEvent<HTMLInputElement>) => {
       tryPlay()
       const v = Number(e.target.value)
-      setVolume(v)
+      setVolume(v / 5)
       if (v > 0 && muted) setMuted(false)
     },
     [muted, tryPlay],
@@ -97,7 +109,8 @@ export default function AudioSwitcher() {
             min={0}
             max={1}
             step={0.05}
-            value={volume}
+            value={volume * 5}
+            onInput={handleMobileVolumeInput}
             onChange={handleMobileVolumeInput}
             aria-label={t('audio.volume')}
           />
