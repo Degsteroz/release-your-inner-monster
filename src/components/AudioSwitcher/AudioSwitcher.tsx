@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState, type ChangeEvent } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import track from '../../assets/linkin-park_figure-09.mp3'
@@ -82,9 +82,9 @@ export default function AudioSwitcher() {
   )
 
   const handleMobileVolumeInput = useCallback(
-    (e: ChangeEvent<HTMLInputElement>) => {
+    (e: { currentTarget: HTMLInputElement }) => {
       tryPlay()
-      const v = Number(e.target.value)
+      const v = Number(e.currentTarget.value)
       setVolume(v / 5)
       if (v > 0 && muted) setMuted(false)
     },
