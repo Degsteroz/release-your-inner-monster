@@ -1,0 +1,64 @@
+.audioSwitcher
+  display: flex
+  flex-flow: column
+  width: 50px
+
+.muteButton
+  display: flex
+  flex-flow: column
+  padding: 0.25rem
+  line-height: 0
+
+.svg
+  width: 20px
+  height: 20px
+  margin: 0 auto
+
+.gaugeWrap
+  position: relative
+  width: 100%
+  border-radius: 8px
+  outline: none
+
+  &:focus-visible
+    box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px #333333
+
+.gaugeSvg
+  display: block
+  width: 100%
+  height: auto
+  touch-action: none
+  cursor: pointer
+  user-select: none
+
+.gaugeArcBg
+  stroke: #e0e0e0
+  stroke-width: 6
+  stroke-linecap: round
+
+.gaugeArcBgRed
+  stroke: #c62828
+  stroke-width: 6
+  stroke-linecap: round
+
+.gaugeArcFill
+  stroke: #333333
+  stroke-width: 6
+  stroke-linecap: round
+
+.gaugeArcFillRed
+  stroke: #b71c1c
+  stroke-width: 6
+  stroke-linecap: round
+
+.gaugeTick
+  stroke: #e0e0e0
+  stroke-width: 1.5
+
+.gaugeNeedle
+  stroke: #333333
+  stroke-width: 2
+  stroke-linecap: round
+
+.gaugeHub
+  fill: #333333

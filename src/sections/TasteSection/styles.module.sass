@@ -1,0 +1,54 @@
+@use "../../styles/mixins"
+
+// Высота трека скролла: 3× экран (1× под sticky-видео + 2× «наматывание» таймлайна)
+$taste-track-height: 300vh
+
+.tasteSection
+  width: 100vw
+  min-height: $taste-track-height
+  background: black
+
+.videoWrapper
+  width: 100vw
+  height: 100vh
+  display: flex
+  align-items: center
+  justify-content: center
+  position: sticky
+  top: 0
+  overflow: hidden
+  opacity: 0.4
+  z-index: 0
+
+.video
+  width: 100%
+  height: 100%
+  object-fit: cover
+  pointer-events: none
+
+
+.content
+  z-index: 10
+  position: relative
+  display: flex
+  flex-flow: column
+  min-height: $taste-track-height
+  box-sizing: border-box
+  @include mixins.section
+  margin-top: -50vh
+  width: 1300px
+
+.block
+  height: 100vh
+  display: flex
+  justify-content: center
+  align-items: center
+  gap: 5px
+  h2, h3
+    color: white
+
+  h2
+    font-size: 100px
+
+  h3
+    font-size: 26px

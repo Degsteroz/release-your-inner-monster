@@ -1,0 +1,50 @@
+@use "../../styles/mixins"
+
+.footer
+  width: 100%
+  background: #0a0a0a
+  color: rgba(255, 255, 255, 0.82)
+  border-top: 1px solid rgba(255, 255, 255, 0.08)
+  padding: clamp(2rem, 5vw, 3.5rem) clamp(1.25rem, 4vw, 3rem) clamp(2.5rem, 6vw, 4rem)
+
+.inner
+  @include mixins.section
+  max-width: 900px
+
+.meta
+  display: flex
+  flex-wrap: wrap
+  align-items: center
+  gap: 0.75rem 1.5rem
+  margin-bottom: 2rem
+  font-size: 0.9rem
+  letter-spacing: 0.04em
+  color: rgba(255, 255, 255, 0.55)
+
+.copyright
+  font-family: 'Source Sans 3', system-ui, sans-serif
+
+.telegram
+  color: rgba(255, 255, 255, 0.75)
+  text-decoration: none
+  border-bottom: 1px solid rgba(255, 255, 255, 0.25)
+  transition: color 0.2s ease, border-color 0.2s ease
+  &:hover
+    color: #fff
+    border-bottom-color: rgba(255, 255, 255, 0.55)
+
+.legalTitle
+  font-size: clamp(0.85rem, 2vw, 1rem)
+  letter-spacing: 0.12em
+  margin: 0 0 1.25rem
+  color: rgba(255, 255, 255, 0.95)
+
+.legalBody
+  font-size: clamp(0.8rem, 1.6vw, 0.9375rem)
+  line-height: 1.55
+  color: rgba(255, 255, 255, 0.72)
+  p
+    margin: 0
+    font-family: 'Source Sans 3', system-ui, sans-serif
+    & + p
+      margin-top: 1rem

@@ -1,0 +1,22 @@
+// Палитра
+$color-base: #ffffff;
+$color-shadow: #e0e0e0;
+$color-text: #333333;
+
+// Типографика
+// Заголовки: плотный сжатый гротеск в духе Monster Energy (оригинал — фирменный, не в free fonts)
+// Текст: чистый sans-serif
+$font-heading: 'Oswald', 'Arial Narrow', 'Helvetica Condensed', sans-serif;
+$font-body:
+  'Source Sans 3',
+  system-ui,
+  -apple-system,
+  'Segoe UI',
+  sans-serif;
+
+// Брейкпоинты (мобильная вёрстка — max-width)
+$bp-xs: 380px;
+$bp-sm: 480px;
+$bp-md: 768px;
+$bp-lg: 1024px;
+$bp-xl: 1280px;

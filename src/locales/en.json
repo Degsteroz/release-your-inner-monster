@@ -1,0 +1,54 @@
+{
+  "hero": {
+    "title": "WHITE MONSTER: NOT JUST AN ENERGY DRINK. IT’S A LIFESTYLE.",
+    "lead": "The Ultra blend you know, the clean aesthetic you crave. Designed for the elite. Crafted for the beast within."
+  },
+  "taste": {
+    "title": "AN ICY BLAST WITH ZERO SUGAR.",
+    "body": "Forget everything you knew about energy drinks. Monster Ultra White is absolute refreshment. A light, sparkling citrus blend with a deep frosty finish and zero sugar. It’s pure, lean energy that hits the bullseye every time. A crisp hit that goes down easy but acts like a beast."
+  },
+  "position": {
+    "title": "UNLEASH THE ULTRA BEAST",
+    "body": "We don’t just make drinks. We create icons. Monster Energy Ultra White is the quintessence of our philosophy. We’ve taken the legendary Monster energy blend and stripped it down to the core to deliver uncompromising power in its most elite form. It’s the choice for those who demand more, look sharper, and go further. This is energy that needs no introduction."
+  },
+  "buyers": {
+    "title": "MORE THAN A DRINK. A WAY OF LIFE.",
+    "body": "The White Can in your hand is a manifesto. It’s a signal that you’re part of a tribe that lives life at full throttle. Gamers, extreme athletes, musicians, and night owls chasing new horizons — we all ride with White Ultra. It gives you the stamina to shred longer, the focus to win bigger, and the drive to make history. You don’t just drink energy; you become it."
+  },
+  "brandManifesto": {
+    "eyebrow": "REMEMBER WHO YOU ARE, WHITE BOY!",
+    "title": "CLASSIC. ENERGY. REBEL.",
+    "description": {
+      "p1": "This isn’t just a can in your hand. It’s the key to a code we wrote together. Remember the crack of a snapped deck on scorching asphalt? The roar of an overdriven guitar keeping the neighbors up all night? Scraped knees, cassette players, and the taste of absolute freedom that couldn’t be bought, only felt?",
+      "p2": "Monster Energy Ultra White was forged for those who know the value of those moments. We’ve stripped the legendary energy blend down to its core, leaving only frosty citrus refreshment and uncompromising power. It’s the choice for those who value the aesthetics of strength and charisma much and aren’t afraid to define their own rules.",
+      "p3": "We’re not just offering a 'recharge.' We’re offering a confirmation of your status. The status of a rebel, a creator, an extremist. One who remembers their roots but always looks ahead. Ultra White is the fuel for your lifestyle. It’s the manifesto of who you are."
+    },
+    "footer": "Zero sugar. Zero compromises. For the tribe.",
+    "cta": "UNLEASH THE BEAST"
+  },
+  "availability": {
+    "title": "LITERALLY EVERYWHERE.",
+    "subtitle": "A lifestyle that knows no boundaries.",
+    "body": "You don't need a map to find your Monster Ultra. It’s already where you are. In a massive supermarket fridge, on a gas station shelf in the middle of a night drive, or at the small corner kiosk right by your house. If there’s room for ice, there’s room for a White Monster. Your lifestyle is always one step away.",
+    "tagline": "Just reach out."
+  },
+  "langSwitcher": {
+    "label": "Interface language",
+    "ru": "Ru",
+    "en": "En"
+  },
+  "footer": {
+    "meta": {
+      "copyright": "© {{year}}",
+      "telegram": "Telegram: @Degster_oz"
+    },
+    "legal": {
+      "title": "LEGAL DISCLAIMER",
+      "nonCommercial": "This website is a non-commercial, fan-made project created solely for educational and entertainment purposes. This project is not intended for profit, is not an official representation of the brand, and is not affiliated with Monster Energy Company or its subsidiaries.",
+      "aiDisclosure": "All visual materials on this site, including images of individuals and environments, are products of generative AI algorithms (AI Generated Content). They do not represent real-life photographs or events. Any resemblance to real persons is intended as a creative homage and does not constitute an endorsement or a commercial contract with said individuals (including Rhea Ripley).",
+      "intellectualProperty": "Monster Energy®, Ultra White®, and the Claw Icon logo are registered trademarks of Monster Energy Company. All copyrights to trademarks, identity, and names belong to their respective owners. The author of this project claims no ownership over these intellectual property assets.",
+      "healthWarning": "Please consume energy drinks responsibly and in accordance with the manufacturer's guidelines found on the packaging.",
+      "finalNote": "This project serves as a demonstration of modern web design and AI capabilities. Should the rights holders have any concerns, we are prepared to promptly modify or remove content upon request. Please, no summons — a case of Monster Ultra White would be a much more productive resolution."
+    }
+  }
+}

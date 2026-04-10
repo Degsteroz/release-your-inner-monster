@@ -1,0 +1,66 @@
+@use 'variables' as *;
+
+// ——— Медиа: от меньшего экрана (mobile-first down) ———
+@mixin media-down($max) {
+  @media screen and (max-width: $max) {
+    @content;
+  }
+}
+
+@mixin xs {
+  @include media-down($bp-xs) {
+    @content;
+  }
+}
+
+@mixin sm {
+  @include media-down($bp-sm) {
+    @content;
+  }
+}
+
+@mixin md {
+  @include media-down($bp-md) {
+    @content;
+  }
+}
+
+@mixin lg {
+  @include media-down($bp-lg) {
+    @content;
+  }
+}
+
+@mixin xl {
+  @include media-down($bp-xl) {
+    @content;
+  }
+}
+
+// ——— Типографика ———
+@mixin font-heading {
+  font-family: $font-heading;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: $color-text;
+}
+
+@mixin font-body {
+  font-family: $font-body;
+  font-weight: 400;
+  color: $color-text;
+}
+
+// Тень/обводка из палитры теней
+@mixin shadow-soft {
+  box-shadow: 0 4px 20px rgba($color-shadow, 0.85);
+}
+
+@mixin border-subtle {
+  border: 1px solid $color-shadow;
+}
+
+@mixin section {
+  max-width: 1400px;
+  margin: 0 auto;
+}

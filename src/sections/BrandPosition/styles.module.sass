@@ -1,0 +1,86 @@
+@use "../../styles/mixins"
+
+$theme-transition: 0.55s ease
+
+.brandPosition
+  --brand-fg: #000
+  display: flex
+  flex-flow: column
+  gap: 30px
+  background-color: #fff
+  color: var(--brand-fg)
+  transition: background-color $theme-transition, color $theme-transition
+  position: relative
+
+  &.inverted
+    --brand-fg: #fff
+    background-color: #000
+
+.imageWrapper
+  height: 100vh
+  width: 100vw
+  display: flex
+  align-items: center
+  overflow: hidden
+  position: relative
+
+.image
+  display: flex
+  width: 100vw
+  opacity: 0.8
+
+.titleBlock
+  position: absolute
+  bottom: 0
+  left: 30px
+  z-index: 10
+  h2
+    font-size: 100px
+  h4
+    font-size: 28px
+  h2, h4
+    color: var(--brand-fg)
+    transition: color $theme-transition
+
+.textColumn
+  @include mixins.section
+  margin-top: -50px
+  width: 800px
+  padding: 30px 0
+  display: flex
+  flex-flow: column
+  gap: 40px
+  position: relative
+  p
+    font-size: 28px
+    margin-top: 0
+    z-index: 1
+    color: var(--brand-fg)
+    transition: color $theme-transition
+
+h3
+  font-size: 48px
+
+.logoSlot
+  display: flex
+  justify-content: center
+  width: 100%
+
+.logo
+  display: block
+  flex-shrink: 0
+  opacity: 0.1
+  width: 400px
+  max-width: min(400px, 90vw)
+  height: auto
+  box-sizing: border-box
+  transition: opacity $theme-transition
+
+  &.logoVisible
+    opacity: 1
+.rea
+  position: absolute
+  bottom: 0
+  right: 0
+  opacity: 0.7
+  width: 700px
