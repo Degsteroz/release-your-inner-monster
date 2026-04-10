@@ -10,7 +10,8 @@ const META_DESCRIPTION =
 const OG_TITLE = 'Ultra White — Lifestyle Manifesto'
 const OG_DESCRIPTION =
   'Zero sugar, zero limits. An unauthorized tribute to the cold, clean power of Ultra.'
-const TWITTER_DESCRIPTION = 'A late-night AI tribute to the icons of strength and energy.'
+const TWITTER_DESCRIPTION =
+  'A late-night fun tribute to the icons of strength and energy by Degster_0z.'
 
 const DEFAULT_SITE_ORIGIN = 'https://your-domain.com'
 
