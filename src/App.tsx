@@ -1,3 +1,5 @@
+import { Analytics } from '@vercel/analytics/react'
+
 import Hero from './sections/Hero.tsx'
 import Switchers from './sections/Switchers'
 import TasteSection from './sections/TasteSection'
@@ -9,6 +11,7 @@ import Seo from './components/Seo'
 function App() {
   return (
     <main className="landing">
+      <Analytics />
       <Seo />
       <Switchers />
       <Hero />

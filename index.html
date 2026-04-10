@@ -31,7 +31,7 @@
     />
     <meta
       property="og:url"
-      content="https://your-domain.com/"
+      content="%VITE_SITE_ORIGIN%/"
     />
     <meta
       property="og:title"
@@ -41,7 +41,19 @@
       property="og:description"
       content="Zero sugar, zero limits. An unauthorized tribute to the cold, clean power of Ultra."
     />
-    <!-- og:image: абсолютный URL с Rea.webp подставляет src/components/Seo.tsx (импорт из src/assets) -->
+    <!-- og:image: для Telegram/соцсетей нужен абсолютный URL в сыром HTML (без JS). Файл: public/og-preview.webp -->
+    <meta
+      property="og:image"
+      content="%VITE_OG_IMAGE%"
+    />
+    <meta
+      property="og:image:type"
+      content="image/webp"
+    />
+    <meta
+      name="twitter:image"
+      content="%VITE_OG_IMAGE%"
+    />
 
     <meta
       name="twitter:card"

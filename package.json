@@ -15,6 +15,7 @@
     "optimize:spec-video": "./scripts/optimize-spec-commercial.sh"
   },
   "dependencies": {
+    "@vercel/analytics": "^2.0.1",
     "i18next": "^26.0.4",
     "i18next-browser-languagedetector": "^8.2.1",
     "react": "^19.2.4",
